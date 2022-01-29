@@ -28,103 +28,108 @@ class home extends StatelessWidget {
         var model = whatsappe.get(context).postsmodels;
         var usermodey = whatsappe.get(context).model;
         var likes = whatsappe.get(context).liked;
-        return Scaffold(
-          appBar: AppBar(
-            centerTitle: false,
-            title: const Text(
-              "home",
-              style: TextStyle(
-                color: Colors.indigo,
-                fontSize: 25.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            actions: [
-              CircleAvatar(
-                child: IconButton(
-                  onPressed: () {
-                    ;
-                  },
-                  icon:
-
-                  const Icon(CupertinoIcons.search_circle),
-
-                  color: Colors.black,
-                  splashRadius: 25.0,
+        return ConditionalBuilder(
+          condition:model.isNotEmpty,
+          builder:(context)=>Scaffold(
+            appBar: AppBar(
+              centerTitle: false,
+              title: const Text(
+                "home",
+                style: TextStyle(
+                  color: Colors.indigo,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                radius: 20.0,
-                backgroundColor: Colors.grey[300],
               ),
-              const SizedBox(
-                width: 3,
-              ),
+              actions: [
+                CircleAvatar(
+                  child: IconButton(
+                    onPressed: () {
+                      ;
+                    },
+                    icon:
 
-            ],
-          ),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 22.0,
-                        backgroundImage: NetworkImage("${usermodey!.photo}"),
-                      ),
-                      const SizedBox(
-                        width: 10.0,
-                      ),
-                      SizedBox(
-                          height: 45,
-                          width: w - 74,
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            controller: newpost,
-                            onTap: () {
-                              NEV(
-                                  bool: true,
-                                  context: context,
-                                  page: Newpost());
-                            },
-                            decoration: InputDecoration(
-                              hintText: "what is on your mind?",
-                              hintStyle: TextStyle(
-                                  color: Colors.grey[700], fontSize: 18),
-                              fillColor: Colors.grey,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                            ),
-                          )),
-                    ],
+                    const Icon(CupertinoIcons.search_circle),
+
+                    color: Colors.black,
+                    splashRadius: 25.0,
                   ),
+                  radius: 20.0,
+                  backgroundColor: Colors.grey[300],
                 ),
-                ConditionalBuilder(
-                  condition:
-                      model.isNotEmpty && model != null && usermodey != null,
-                  builder: (context) => ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) =>
-                        card(context, model[index], usermodey, index),
-                    separatorBuilder: (context, index) => Container(
-                      height: 10.0,
-                      width: double.maxFinite,
-                      color: Colors.grey,
-                    ),
-                    itemCount: model.length,
-                  ),
-                  fallback: (context) => const Center(
-                      heightFactor: 15,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 20.0,
-                      )),
+                const SizedBox(
+                  width: 3,
                 ),
+
               ],
             ),
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 22.0,
+                          backgroundImage: NetworkImage("${usermodey!.photo}"),
+                        ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        SizedBox(
+                            height: 45,
+                            width: w - 74,
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              controller: newpost,
+                              onTap: () {
+                                NEV(
+                                    bool: true,
+                                    context: context,
+                                    page: Newpost());
+                              },
+                              decoration: InputDecoration(
+                                hintText: "what is on your mind?",
+                                hintStyle: TextStyle(
+                                    color: Colors.grey[700], fontSize: 18),
+                                fillColor: Colors.grey,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                              ),
+                            )),
+                      ],
+                    ),
+                  ),
+                  ConditionalBuilder(
+                    condition:
+                    model.isNotEmpty && model != null && usermodey != null,
+                    builder: (context) => ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) =>
+                          card(context, model[index], usermodey, index),
+                      separatorBuilder: (context, index) => Container(
+                        height: 10.0,
+                        width: double.maxFinite,
+                        color: Colors.grey,
+                      ),
+                      itemCount: model.length,
+                    ),
+                    fallback: (context) => const Center(
+                        heightFactor: 15,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 20.0,
+                        )),
+                  ),
+                ],
+              ),
+            ),
           ),
+          fallback: (context)=>const Center(child: const CircularProgressIndicator.adaptive()),
+
         );
       },
     );

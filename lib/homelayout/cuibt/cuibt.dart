@@ -41,31 +41,20 @@ class whatsappe extends Cubit<whatsappstates> {
   late dynamic theremassgeC=sherdprefrence.getdate(key: "therecolor")!=null?HexColor("#$therehexcolors"):Colors.indigo;
   late String Urlphotocover;
   List<PersistentBottomNavBarItem> bottomNav = [
-    PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.bell),
-      title: ("notifications"),
-      activeColorPrimary: CupertinoColors.activeBlue,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
-    ),
-    PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.play_rectangle),
-      title: ("videos"),
-      activeColorPrimary: CupertinoColors.activeBlue,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
-    ),
+
     PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.home, color: CupertinoColors.white,),
       title: ("Home"),
-      inactiveColorSecondary: Colors.blueGrey,
-      activeColorPrimary: Colors.indigo,
-      inactiveColorPrimary: Colors.indigo,
+      activeColorPrimary: CupertinoColors.activeBlue,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
     ),
     PersistentBottomNavBarItem(
 
-      icon: const Icon(CupertinoIcons.person_alt_circle_fill),
+      icon: const Icon(CupertinoIcons.person_alt_circle_fill,color:CupertinoColors.white,),
       title: ("profile"),
-      activeColorPrimary: CupertinoColors.activeBlue,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      inactiveColorSecondary: Colors.blueGrey,
+      activeColorPrimary: Colors.indigo,
+      inactiveColorPrimary: Colors.white,
     ),
     PersistentBottomNavBarItem(
       icon: IconButton(
@@ -89,8 +78,6 @@ class whatsappe extends Cubit<whatsappstates> {
     ),*/
   ];
   List<Widget> screens = [
-    notfication(),
-    video(),
     home(),
     profile(),
     chat(),

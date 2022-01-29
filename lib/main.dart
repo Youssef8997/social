@@ -19,7 +19,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  CacheManager.logLevel = CacheManagerLogLevel.verbose;
   var token=await FirebaseMessaging.instance.getToken();
   FirebaseMessaging.onMessage.listen((event) {
     print(event.notification!.title.toString());
@@ -97,7 +96,6 @@ scaffoldBackgroundColor: Colors.black87,
     color: Colors.indigo
   )
 ),
-themeMode: ThemeMode.dark,
           home:widget
       ),
     );
